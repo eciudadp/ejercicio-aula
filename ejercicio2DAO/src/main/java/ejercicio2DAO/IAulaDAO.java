@@ -11,7 +11,7 @@ public interface IAulaDAO {
 	
 	void actualizarAula(Aula aula);
 	
-	void eliminarAula(String nombre);
+	void eliminarAula(Aula aula);
 	
 	Aula getAula(String nombre);
 	
@@ -19,7 +19,7 @@ public interface IAulaDAO {
 	
 	List<Aula> getAulas();
 	
-	Map<String,Aula> getAlumnosAula();
+	//Map<String,Aula> getAlumnosAula();
 	
-	Map<String,Aula> getProfesoresAula();
+	//Map<String,Aula> getProfesoresAula();
 }

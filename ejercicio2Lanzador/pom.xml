@@ -6,7 +6,7 @@
   	<dependencies>
 		<dependency>
 			<groupId>com.curso.java.ejercicio2maven</groupId>
-			<artifactId>ejercicio2DAO</artifactId>
+			<artifactId>ejercicio2Negocio</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

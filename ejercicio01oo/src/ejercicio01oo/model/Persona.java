@@ -9,7 +9,8 @@ public class Persona {
 	public Persona(){
 		
 	}
-	public Persona(String nombre, String DNI){
+	public Persona(String nombre){
+		super();
 		this.nombre = nombre;
 		//this.DNI=DNI;
 	}

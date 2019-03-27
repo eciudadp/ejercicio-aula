@@ -21,9 +21,9 @@ public class AulasLN {
 		super();
 		this.aulaDAO = aulaDAO;
 	}
-	
+
 	public Aula crearAula(String nombre, boolean proyector, boolean pizarra, Set<PuestoDeTrabajo> puestoDelAlumno) {
-		Aula aula =new Aula(nombre,proyector,pizarra, puestoDelAlumno);
+		Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
 		this.aulaDAO.crearAula(aula);
 		return this.aulaDAO.getAula(nombre);
 	}
@@ -31,56 +31,58 @@ public class AulasLN {
 	public Collection<Alumno> ListaAlumnosXAula(String nombre) {
 		Aula aula = this.aulaDAO.getAula(nombre);
 		Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
-		Collection<Alumno> listaAlumnos= new LinkedList<Alumno>();
-		Iterator<PuestoDeTrabajo> iterador =puestos.iterator();
-		
-		while(iterador.hasNext()) {
+		Collection<Alumno> listaAlumnos = new LinkedList<Alumno>();
+		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
+
+		while (iterador.hasNext()) {
 			PuestoDeTrabajo puestoActual = iterador.next();
-			if(puestoActual.getPersona()!=null) {
+			if (puestoActual.getPersona() != null) {
 				Persona personilla = puestoActual.getPersona();
-				if(personilla instanceof Alumno) {
+				if (personilla instanceof Alumno) {
 					listaAlumnos.add((Alumno) puestoActual.getPersona());
-				}							
+				}
 			}
 		}
 		return listaAlumnos;
-		
+
 	}
+
 	public Collection<Profesor> ListaProferoresXAula(String nombre) {
 		Aula aula = this.aulaDAO.getAula(nombre);
 		Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
 		PuestoDeTrabajo puestoProfesor = aula.getPuestoDelProfesor();
-		Collection<Profesor> listaProfesores= new LinkedList<Profesor>();
-		Iterator<PuestoDeTrabajo> iterador =puestos.iterator();
-		while(iterador.hasNext()) {
+		Collection<Profesor> listaProfesores = new LinkedList<Profesor>();
+		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
+		while (iterador.hasNext()) {
 			PuestoDeTrabajo puestoActual = iterador.next();
-			if(puestoActual.getPersona()!=null) {
+			if (puestoActual.getPersona() != null) {
 				Persona personilla = puestoActual.getPersona();
-				if(personilla instanceof Profesor) {
+				if (personilla instanceof Profesor) {
 					listaProfesores.add((Profesor) puestoActual.getPersona());
-				}							
+				}
 			}
 		}
 		listaProfesores.add((Profesor) puestoProfesor.getPersona());
 		return listaProfesores;
-		
+
 	}
+
 	public void AsignarAlumnoAAula(String nombre, Alumno alumno) {
 		Aula aula = this.aulaDAO.getAula(nombre);
 		Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
-		Iterator<PuestoDeTrabajo> iterador =puestos.iterator();
-		while(iterador.hasNext()) {
+		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
+		while (iterador.hasNext()) {
 			PuestoDeTrabajo puestoActual = iterador.next();
-			if(puestoActual.getPersona()==null && puestoActual.isOrdenador()) {
-				puestoActual.setPersona(alumno);						
+			if (puestoActual.getPersona() == null && puestoActual.isOrdenador()) {
+				puestoActual.setPersona(alumno);
 			}
 		}
 	}
-	
-	public void eliminarAula(String nombre) {
-		this.aulaDAO.eliminarAula(nombre);
+
+	public void eliminarAula(List<Aula> aulas) {
+		for (Aula aula : aulas) {
+			this.aulaDAO.eliminarAula(aula);
+		}
 	}
-	
-	
-	
+
 }
