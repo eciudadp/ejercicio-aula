@@ -21,7 +21,9 @@ public class Aula {
 	}
 	//private Alumno alumno;
 	//private Profesor profesor;
-
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,6 +32,13 @@ public class Aula {
 		return result;
 	}
 
+
+
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 
 
 

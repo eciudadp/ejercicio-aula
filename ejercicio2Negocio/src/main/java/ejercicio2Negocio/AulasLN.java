@@ -21,11 +21,14 @@ public class AulasLN {
 		super();
 		this.aulaDAO = aulaDAO;
 	}
+	public AulasLN() {
+		super();
+	}
 
-	public Aula crearAula(String nombre, boolean proyector, boolean pizarra, Set<PuestoDeTrabajo> puestoDelAlumno) {
-		Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
+	public Aula crearAula(Aula aula) {
+		//Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
 		this.aulaDAO.crearAula(aula);
-		return this.aulaDAO.getAula(nombre);
+		return this.aulaDAO.getAula(aula.getNombre());
 	}
 
 	public Collection<Alumno> ListaAlumnosXAula(String nombre) {
@@ -68,21 +71,33 @@ public class AulasLN {
 	}
 
 	public void AsignarAlumnoAAula(String nombre, Alumno alumno) {
-		Aula aula = this.aulaDAO.getAula(nombre);
-		Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
+		//Aula aula = this.aulaDAO.getAula(nombre);
+		boolean admitido = false;
+		//Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
+		Set<PuestoDeTrabajo> puestos = this.aulaDAO.getAula(nombre).getPuestoDelAlumno();
 		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
 		while (iterador.hasNext()) {
 			PuestoDeTrabajo puestoActual = iterador.next();
 			if (puestoActual.getPersona() == null && puestoActual.isOrdenador()) {
 				puestoActual.setPersona(alumno);
+				admitido = true;
+			}
+			if(admitido) {
+				System.out.println();
 			}
 		}
+		
 	}
 
-	public void eliminarAula(List<Aula> aulas) {
-		for (Aula aula : aulas) {
+	public void eliminarAula(Aula aula) {
 			this.aulaDAO.eliminarAula(aula);
-		}
+		
+	}
+	
+	public Collection<Aula> listarAulas(){
+		List<Aula> listaAulas = this.aulaDAO.getAulas();
+		return listaAulas;
+		
 	}
 
 }

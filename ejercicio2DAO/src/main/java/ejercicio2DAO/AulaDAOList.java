@@ -1,5 +1,6 @@
 package ejercicio2DAO;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,13 @@ import ejercicio01oo.model.PuestoDeTrabajo;
 public class AulaDAOList implements IAulaDAO {
 
 	private List<Aula> edificio;
+	
+	
+
+	public AulaDAOList() {
+		super();
+		this.edificio= new ArrayList<Aula>();
+	}
 
 	public void crearAula(Aula aula) {
 		if (!edificio.contains(aula)) {
@@ -27,6 +35,7 @@ public class AulaDAOList implements IAulaDAO {
 				edificio.set(i, aula);
 				condicion = true;
 			}
+			i++;
 		}
 		System.out.println("Aula " + aula + " actualizada");
 	}
@@ -48,6 +57,7 @@ public class AulaDAOList implements IAulaDAO {
 				condicion = true;
 				aula = aulaAux;
 			}
+			i++;
 		}
 		return aula;
 	}
