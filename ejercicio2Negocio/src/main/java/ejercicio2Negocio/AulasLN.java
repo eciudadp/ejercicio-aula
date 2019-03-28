@@ -99,5 +99,12 @@ public class AulasLN {
 		return listaAulas;
 		
 	}
+	public IAulaDAO getAulaDAO() {
+		return aulaDAO;
+	}
+	public void setAulaDAO(IAulaDAO aulaDAO) {
+		this.aulaDAO = aulaDAO;
+	}
+	
 
 }

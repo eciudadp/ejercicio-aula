@@ -13,12 +13,6 @@ public class AulaDAOList implements IAulaDAO {
 
 	private List<Aula> edificio;
 	
-	
-
-	public AulaDAOList() {
-		super();
-		this.edificio= new ArrayList<Aula>();
-	}
 
 	public void crearAula(Aula aula) {
 		if (!edificio.contains(aula)) {
@@ -67,4 +61,13 @@ public class AulaDAOList implements IAulaDAO {
 		return edificio;
 	}
 
+	public List<Aula> getEdificio() {
+		return edificio;
+	}
+
+	public void setEdificio(List<Aula> edificio) {
+		this.edificio = edificio;
+	}
+
+	
 }

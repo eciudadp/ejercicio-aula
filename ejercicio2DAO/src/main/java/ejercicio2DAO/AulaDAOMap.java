@@ -12,12 +12,7 @@ import ejercicio01oo.model.Aula;
 public class AulaDAOMap implements IAulaDAO {
 
 	private Map<String, Aula> edificio;
-	
-	
-	public AulaDAOMap() {
-		super();
-		this.edificio= new HashMap<String,Aula>();
-	}
+
 
 	public void crearAula(Aula aula) {
 		if (!edificio.containsKey(aula.getNombre())) {
@@ -52,6 +47,14 @@ public class AulaDAOMap implements IAulaDAO {
 			aulas.add(edificio.get(nombreAula));
 		}
 		return aulas;
+	}
+
+	public Map<String, Aula> getEdificio() {
+		return edificio;
+	}
+
+	public void setEdificio(Map<String, Aula> edificio) {
+		this.edificio = edificio;
 	}
 
 }

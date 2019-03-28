@@ -5,18 +5,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import ejercicio01oo.model.Alumno;
 import ejercicio01oo.model.Aula;
 import ejercicio01oo.model.Profesor;
 import ejercicio01oo.model.PuestoDeTrabajo;
-import ejercicio2DAO.AulaDAOList;
-import ejercicio2DAO.IAulaDAO;
 import ejercicio2Negocio.AulasLN;
 
 public class LanzadorLista {
+	
+	public static ApplicationContext context;
+
+	static {
+		context = new ClassPathXmlApplicationContext("beansDAO.xml");
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//private ApplicationContext context;
+			
 		PuestoDeTrabajo puesto1= new PuestoDeTrabajo(true);
 		PuestoDeTrabajo puesto2= new PuestoDeTrabajo(true);
 		PuestoDeTrabajo puesto0 = new PuestoDeTrabajo(true);
@@ -40,7 +50,7 @@ public class LanzadorLista {
 		//puesto2.setPersona(alumno2);
 		puestosAlumnos.add(puesto1);
 		//puestosAlumnos.add(puesto2);
-		AulasLN negocio = new AulasLN(new AulaDAOList()); 
+		AulasLN negocio = context.getBean("negocio",AulasLN.class); 
 		negocio.crearAula(aula1);
 		negocio.crearAula(aula2);
 		negocio.AsignarAlumnoAAula("Galileo", alumno1);
