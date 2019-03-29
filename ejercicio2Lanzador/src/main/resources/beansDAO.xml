@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="MiDAO" class="ejercicio2DAO.AulaDAOList">
-		<property name="edificio">
+	<bean id="MiDAO1" class="ejercicio2DAO.AulaDAOList">
+		<property name="edificio1">
 			<bean id="listaDeAulas" class="java.util.ArrayList">
 			</bean>
 		</property>
@@ -16,7 +16,7 @@
 
 
 	<bean id="negocio" class="ejercicio2Negocio.AulasLN">
-		<property name="aulaDAO" ref="MiDAO">
+		<property name="aulaDAO1" ref="MiDAO1">
 		</property>
 	</bean>
 

@@ -1,9 +1,14 @@
 package ejercicio01oo.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+
 public class Persona {
+	
 	private String nombre;
 	//private String DNI;
-	
 	
 	
 	public Persona(){

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.ws.ServiceMode;
+
 import ejercicio01oo.model.Alumno;
 import ejercicio01oo.model.Aula;
 import ejercicio01oo.model.Persona;
@@ -14,7 +16,13 @@ import ejercicio01oo.model.Profesor;
 import ejercicio01oo.model.PuestoDeTrabajo;
 import ejercicio2DAO.IAulaDAO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class AulasLN {
+	
+	@Autowired
 	private IAulaDAO aulaDAO;
 
 	public AulasLN(IAulaDAO aulaDAO) {
@@ -78,7 +86,7 @@ public class AulasLN {
 		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
 		while (iterador.hasNext()) {
 			PuestoDeTrabajo puestoActual = iterador.next();
-			if (puestoActual.getPersona() == null && puestoActual.isOrdenador()) {
+			if (puestoActual.getPersona() == null && puestoActual.getOrdenador()==true) {
 				puestoActual.setPersona(alumno);
 				admitido = true;
 			}

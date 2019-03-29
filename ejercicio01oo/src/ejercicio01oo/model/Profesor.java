@@ -1,13 +1,18 @@
 package ejercicio01oo.model;
 
-public class Profesor extends Persona {
-	private boolean malaLeche;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-	public boolean isMalaLeche() {
+@Component
+@Scope(value="prototype")
+public class Profesor extends Persona {
+	private Boolean malaLeche;
+
+	public Boolean isMalaLeche() {
 		return malaLeche;
 	}
 
-	public void setMalaLeche(boolean malaLeche) {
+	public void setMalaLeche(Boolean malaLeche) {
 		this.malaLeche = malaLeche;
 	}
 }

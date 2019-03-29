@@ -3,22 +3,33 @@ package ejercicio01oo.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+@Component
+@Scope (value="prototype")
 public class Aula {
 	private String nombre;
 	private PuestoDeTrabajo puestoDelProfesor;
+	@Autowired
+	@Qualifier("SetDePuestos")
 	private Set<PuestoDeTrabajo> puestoDelAlumno;
-	private boolean proyector;
-	private boolean pizarra;
+	private Boolean proyector;
+	private Boolean pizarra;
 	
 	
 	
-	public Aula(String nombre, boolean proyector, boolean pizarra, Set<PuestoDeTrabajo> puestoDelAlumno) {
-		super();
-		this.nombre = nombre;
-		this.proyector = proyector;
-		this.pizarra = pizarra;
-		this.puestoDelAlumno = puestoDelAlumno;
-	}
+//	public Aula(String nombre, boolean proyector, boolean pizarra, Set<PuestoDeTrabajo> puestoDelAlumno) {
+//		super();
+//		this.nombre = nombre;
+//		this.proyector = proyector;
+//		this.pizarra = pizarra;
+//		this.puestoDelAlumno = puestoDelAlumno;
+//	}
 	//private Alumno alumno;
 	//private Profesor profesor;
 	
@@ -83,18 +94,31 @@ public class Aula {
 	public void setPuestoDelAlumno(Set<PuestoDeTrabajo> puestoDelAlumno) {
 		this.puestoDelAlumno = puestoDelAlumno;
 	}
-	public boolean isProyector() {
+
+
+
+	public Boolean getProyector() {
 		return proyector;
 	}
-	public void setProyector(boolean proyector) {
+
+
+
+	public void setProyector(Boolean proyector) {
 		this.proyector = proyector;
 	}
-	public boolean isPizarra() {
+
+
+
+	public Boolean getPizarra() {
 		return pizarra;
 	}
-	public void setPizarra(boolean pizarra) {
+
+
+
+	public void setPizarra(Boolean pizarra) {
 		this.pizarra = pizarra;
 	}
+
 	
 	
 

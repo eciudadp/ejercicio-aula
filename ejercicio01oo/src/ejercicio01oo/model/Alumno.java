@@ -1,8 +1,13 @@
 package ejercicio01oo.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(value="prototype")
 public class Alumno extends Persona{
 
-	private boolean subvencionado;
+	private Boolean subvencionado;
 	
 	public Alumno(){
 		
@@ -13,12 +18,14 @@ public class Alumno extends Persona{
 		this.progreso = progreso;
 	}*/
 
-	public boolean isSubvencionado() {
+	public Boolean getSubvencionado() {
 		return subvencionado;
 	}
 
-	public void setSubvencionado(boolean subvencionado) {
+	public void setSubvencionado(Boolean subvencionado) {
 		this.subvencionado = subvencionado;
 	}
+
+
 
 }

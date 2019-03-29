@@ -5,14 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
 import ejercicio01oo.model.Aula;
 import ejercicio01oo.model.Persona;
 import ejercicio01oo.model.PuestoDeTrabajo;
 
+@Repository
 public class AulaDAOList implements IAulaDAO {
 
+	@Autowired
+	@Qualifier("listaDeAulas")
 	private List<Aula> edificio;
-	
 
 	public void crearAula(Aula aula) {
 		if (!edificio.contains(aula)) {
@@ -47,9 +53,12 @@ public class AulaDAOList implements IAulaDAO {
 		Aula aula = null;
 		while (i < edificio.size() || !condicion) {
 			Aula aulaAux = edificio.get(i);
-			if (aulaAux.getNombre().equals(nombre)) {
+			// if (aulaAux.getNombre().equals(nombre)) {
+			//if (edificio.get(i).getNombre().equals(nombre)) {
+			if (edificio.get(i).getNombre() == nombre) {
 				condicion = true;
 				aula = aulaAux;
+				
 			}
 			i++;
 		}
@@ -69,5 +78,4 @@ public class AulaDAOList implements IAulaDAO {
 		this.edificio = edificio;
 	}
 
-	
 }

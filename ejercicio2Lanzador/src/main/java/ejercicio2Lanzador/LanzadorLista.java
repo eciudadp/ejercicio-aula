@@ -19,7 +19,7 @@ public class LanzadorLista {
 	public static ApplicationContext context;
 
 	static {
-		context = new ClassPathXmlApplicationContext("beansDAO.xml");
+		context = new ClassPathXmlApplicationContext("beansDAOComponentes.xml");
 	}
 
 	public static void main(String[] args) {
@@ -27,7 +27,38 @@ public class LanzadorLista {
 		
 		//private ApplicationContext context;
 			
-		PuestoDeTrabajo puesto1= new PuestoDeTrabajo(true);
+		
+		//PuestoDeTrabajo puesto1 = context.getBean(PuestoDeTrabajo.class);
+		Alumno alumno1= context.getBean(Alumno.class);
+		Alumno alumno2= context.getBean(Alumno.class);
+		PuestoDeTrabajo puestoProfesor = context.getBean(PuestoDeTrabajo.class);
+		Profesor profesor = context.getBean(Profesor.class);
+		Aula aula1 = context.getBean(Aula.class);
+		Aula aula2 = context.getBean(Aula.class);
+		puestoProfesor.setPersona(profesor);
+		aula1.setPuestoDelProfesor(puestoProfesor);
+		alumno1.setNombre("Enrique");
+		alumno2.setNombre("Ines");
+		alumno1.setSubvencionado(true);
+		alumno2.setSubvencionado(true);
+		aula1.setNombre("Kepler");
+		aula2.setNombre("Galileo");
+		
+		for(int i =0;i< 12;i++) {
+			aula1.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
+			System.out.println(aula1 +" añadido puesto de alumno");
+		}
+		
+		AulasLN negocio = context.getBean(AulasLN.class); 
+		negocio.crearAula(aula1);
+		//System.out.println(negocio.crearAula(aula1));
+		System.out.println(negocio.crearAula(aula2));
+		negocio.ListaProferoresXAula("Kepler");
+		System.out.println(negocio.listarAulas());
+		//System.out.println(negocio.AsignarAlumnoAAula("aula1", alumno1););
+		//System.out.println();
+		//List<Aula> listaAulas
+		/*PuestoDeTrabajo puesto1= new PuestoDeTrabajo(true);
 		PuestoDeTrabajo puesto2= new PuestoDeTrabajo(true);
 		PuestoDeTrabajo puesto0 = new PuestoDeTrabajo(true);
 		
@@ -50,22 +81,22 @@ public class LanzadorLista {
 		//puesto2.setPersona(alumno2);
 		puestosAlumnos.add(puesto1);
 		//puestosAlumnos.add(puesto2);
-		AulasLN negocio = context.getBean("negocio",AulasLN.class); 
+		AulasLN negocio = context.getBean(AulasLN.class); 
 		negocio.crearAula(aula1);
 		negocio.crearAula(aula2);
-		negocio.AsignarAlumnoAAula("Galileo", alumno1);
-		negocio.AsignarAlumnoAAula("Galileo", alumno2);
-		negocio.ListaAlumnosXAula("Galileo");
-		negocio.ListaProferoresXAula("Galileo");
-		listaAulas= (List<Aula>) negocio.listarAulas();
-		
-		System.out.println("Listado de todas las aulas");
+		negocio.AsignarAlumnoAAula("aula1", alumno1);
+		//negocio.AsignarAlumnoAAula("Galileo", alumno2);
+		//negocio.ListaAlumnosXAula("Galileo");
+		//negocio.ListaProferoresXAula("Galileo");
+		//listaAulas= (List<Aula>) negocio.listarAulas();
+		System.out.println(negocio.listarAulas());
+		/*System.out.println("Listado de todas las aulas");
 		
 		for(int i = 0; i < listaAulas.size();i++) {
 			Aula aulaAux = listaAulas.get(i);
 			System.out.println("Aula " + i + " "+ aulaAux.getNombre() );
 		}
-		negocio.eliminarAula(aula2);
+		negocio.eliminarAula(aula2);*/
 		
 	}
 
