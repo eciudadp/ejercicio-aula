@@ -1,6 +1,6 @@
 package ejercicio01oo.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class PuestoDeTrabajo {
 	
 	private Persona persona;
+	@Value("true")
 	private Boolean ordenador;
 
 	

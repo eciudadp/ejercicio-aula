@@ -1,6 +1,7 @@
 package ejercicio2Lanzador;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,10 @@ public class LanzadorLista {
 		Alumno alumno1= context.getBean(Alumno.class);
 		Alumno alumno2= context.getBean(Alumno.class);
 		PuestoDeTrabajo puestoProfesor = context.getBean(PuestoDeTrabajo.class);
+		PuestoDeTrabajo puestoAlumno1 = context.getBean(PuestoDeTrabajo.class);
+		PuestoDeTrabajo puestoAlumno2 = context.getBean(PuestoDeTrabajo.class);
 		Profesor profesor = context.getBean(Profesor.class);
+		profesor.setNombre("Ruben");
 		Aula aula1 = context.getBean(Aula.class);
 		Aula aula2 = context.getBean(Aula.class);
 		puestoProfesor.setPersona(profesor);
@@ -43,17 +47,29 @@ public class LanzadorLista {
 		alumno2.setSubvencionado(true);
 		aula1.setNombre("Kepler");
 		aula2.setNombre("Galileo");
+		puestoAlumno1.setPersona(alumno1);
+		puestoAlumno2.setPersona(alumno2);
+		 //aula1.getPuestoDelAlumno()).setPersona(alumno1);
+//		for(int i =0;i< 12;i++) {
+//			aula1.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
+//			//System.out.println(aula1 +" añadido puesto de alumno");
+//		}
+		aula1.getPuestoDelAlumno().add(puestoAlumno2);
+		aula1.getPuestoDelAlumno().add(puestoAlumno1);
 		
-		for(int i =0;i< 12;i++) {
-			aula1.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
-			System.out.println(aula1 +" añadido puesto de alumno");
-		}
 		
 		AulasLN negocio = context.getBean(AulasLN.class); 
 		negocio.crearAula(aula1);
 		//System.out.println(negocio.crearAula(aula1));
 		System.out.println(negocio.crearAula(aula2));
-		negocio.ListaProferoresXAula("Kepler");
+		Collection<Profesor> listaProferoresXAula = negocio.ListaProferoresXAula("Kepler");
+		System.out.println(negocio.listarAulas());
+		System.out.println(listaProferoresXAula);
+		negocio.AsignarAlumnoAAula("Kepler", alumno1);
+		negocio.AsignarAlumnoAAula("Kepler", alumno2);
+		Collection<Alumno> ListaalumnosXAula = negocio.ListaAlumnosXAula("Kepler");
+		System.out.println(ListaalumnosXAula);
+		negocio.eliminarAula(aula2);
 		System.out.println(negocio.listarAulas());
 		//System.out.println(negocio.AsignarAlumnoAAula("aula1", alumno1););
 		//System.out.println();

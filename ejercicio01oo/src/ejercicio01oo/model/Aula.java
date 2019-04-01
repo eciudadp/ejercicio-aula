@@ -1,11 +1,9 @@
 package ejercicio01oo.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +14,7 @@ public class Aula {
 	private String nombre;
 	private PuestoDeTrabajo puestoDelProfesor;
 	@Autowired
-	@Qualifier("SetDePuestos")
+	@Qualifier("setDePuestos")
 	private Set<PuestoDeTrabajo> puestoDelAlumno;
 	private Boolean proyector;
 	private Boolean pizarra;

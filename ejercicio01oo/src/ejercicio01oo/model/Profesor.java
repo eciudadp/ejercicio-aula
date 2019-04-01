@@ -15,4 +15,8 @@ public class Profesor extends Persona {
 	public void setMalaLeche(Boolean malaLeche) {
 		this.malaLeche = malaLeche;
 	}
+
+
+	
+	
 }

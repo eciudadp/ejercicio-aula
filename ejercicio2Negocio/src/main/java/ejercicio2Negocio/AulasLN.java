@@ -84,14 +84,11 @@ public class AulasLN {
 		//Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
 		Set<PuestoDeTrabajo> puestos = this.aulaDAO.getAula(nombre).getPuestoDelAlumno();
 		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
-		while (iterador.hasNext()) {
+		while (iterador.hasNext() && !admitido) {
 			PuestoDeTrabajo puestoActual = iterador.next();
 			if (puestoActual.getPersona() == null && puestoActual.getOrdenador()==true) {
 				puestoActual.setPersona(alumno);
 				admitido = true;
-			}
-			if(admitido) {
-				System.out.println();
 			}
 		}
 		

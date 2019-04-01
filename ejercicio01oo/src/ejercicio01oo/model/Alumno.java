@@ -1,12 +1,14 @@
 package ejercicio01oo.model;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("Alumno")
 @Scope(value="prototype")
 public class Alumno extends Persona{
-
+	
+	@Value("true")
 	private Boolean subvencionado;
 	
 	public Alumno(){
