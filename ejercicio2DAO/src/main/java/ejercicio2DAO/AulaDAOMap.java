@@ -57,4 +57,10 @@ public class AulaDAOMap implements IAulaDAO {
 		this.edificio = edificio;
 	}
 
+	@Override
+	public void crearAula(Aula aula, Integer numPuestos) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -33,5 +33,12 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.framework.version}</version>
 		</dependency>
+<!-- 		Aquise mete la deopendencia delJunit para los test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>

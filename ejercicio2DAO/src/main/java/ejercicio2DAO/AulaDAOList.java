@@ -21,7 +21,20 @@ public class AulaDAOList implements IAulaDAO {
 	private List<Aula> edificio;
 
 	public void crearAula(Aula aula) {
-		if (!edificio.contains(aula)) {
+		if (!edificio.contains(aula) && aula != null) {
+			edificio.add(aula);
+			System.out.println("Aula " + aula + " agregada");
+		}
+	}
+
+	public void crearAula(Aula aula, Integer puestos) {
+		
+		if (!edificio.contains(aula) && aula != null) {
+			for (int i = 0; i < puestos; i++) {
+				PuestoDeTrabajo puestoDeTrabajo = new PuestoDeTrabajo();
+				puestoDeTrabajo.setOrdenador(true);
+				aula.getPuestoDelAlumno().add(puestoDeTrabajo);
+			}
 			edificio.add(aula);
 			System.out.println("Aula " + aula + " agregada");
 		}
@@ -30,7 +43,7 @@ public class AulaDAOList implements IAulaDAO {
 	public void actualizarAula(Aula aula) {
 		int i = 0;
 		boolean condicion = false;
-		while (i < edificio.size() || !condicion) {
+		while (i < edificio.size() && !condicion) {
 			if (edificio.get(i).getNombre() == aula.getNombre()) {
 				edificio.set(i, aula);
 				condicion = true;
@@ -51,14 +64,14 @@ public class AulaDAOList implements IAulaDAO {
 		int i = 0;
 		boolean condicion = false;
 		Aula aula = null;
-		while (i < edificio.size() || !condicion) {
+		while (i < edificio.size() && !condicion) {
 			Aula aulaAux = edificio.get(i);
 			// if (aulaAux.getNombre().equals(nombre)) {
-			//if (edificio.get(i).getNombre().equals(nombre)) {
+			// if (edificio.get(i).getNombre().equals(nombre)) {
 			if (edificio.get(i).getNombre() == nombre) {
 				condicion = true;
 				aula = aulaAux;
-				
+
 			}
 			i++;
 		}

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AulasLN {
-	
+
 	@Autowired
 	private IAulaDAO aulaDAO;
 
@@ -29,14 +29,29 @@ public class AulasLN {
 		super();
 		this.aulaDAO = aulaDAO;
 	}
+
 	public AulasLN() {
 		super();
 	}
 
 	public Aula crearAula(Aula aula) {
-		//Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
-		this.aulaDAO.crearAula(aula);
-		return this.aulaDAO.getAula(aula.getNombre());
+		// Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
+		if (aula != null) {
+			this.aulaDAO.crearAula(aula);
+			return this.aulaDAO.getAula(aula.getNombre());
+		} else
+			return null;
+
+	}
+
+	public Aula crearAula(Aula aula, Integer numPuestos) {
+		// Aula aula = new Aula(nombre, proyector, pizarra, puestoDelAlumno);
+		if (aula != null) {
+			this.aulaDAO.crearAula(aula, numPuestos);
+			return this.aulaDAO.getAula(aula.getNombre());
+		} else
+			return null;
+
 	}
 
 	public Collection<Alumno> ListaAlumnosXAula(String nombre) {
@@ -63,13 +78,15 @@ public class AulasLN {
 		Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
 		PuestoDeTrabajo puestoProfesor = aula.getPuestoDelProfesor();
 		Collection<Profesor> listaProfesores = new LinkedList<Profesor>();
-		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
-		while (iterador.hasNext()) {
-			PuestoDeTrabajo puestoActual = iterador.next();
-			if (puestoActual.getPersona() != null) {
-				Persona personilla = puestoActual.getPersona();
-				if (personilla instanceof Profesor) {
-					listaProfesores.add((Profesor) puestoActual.getPersona());
+		if (puestos != null) {
+			Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
+			while (iterador.hasNext()) {
+				PuestoDeTrabajo puestoActual = iterador.next();
+				if (puestoActual.getPersona() != null) {
+					Persona personilla = puestoActual.getPersona();
+					if (personilla instanceof Profesor) {
+						listaProfesores.add((Profesor) puestoActual.getPersona());
+					}
 				}
 			}
 		}
@@ -79,37 +96,38 @@ public class AulasLN {
 	}
 
 	public void AsignarAlumnoAAula(String nombre, Alumno alumno) {
-		//Aula aula = this.aulaDAO.getAula(nombre);
+		// Aula aula = this.aulaDAO.getAula(nombre);
 		boolean admitido = false;
-		//Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
+		// Set<PuestoDeTrabajo> puestos = aula.getPuestoDelAlumno();
 		Set<PuestoDeTrabajo> puestos = this.aulaDAO.getAula(nombre).getPuestoDelAlumno();
 		Iterator<PuestoDeTrabajo> iterador = puestos.iterator();
 		while (iterador.hasNext() && !admitido) {
 			PuestoDeTrabajo puestoActual = iterador.next();
-			if (puestoActual.getPersona() == null && puestoActual.getOrdenador()==true) {
+			if (puestoActual.getPersona() == null && puestoActual.getOrdenador() == true) {
 				puestoActual.setPersona(alumno);
 				admitido = true;
 			}
 		}
-		
+
 	}
 
 	public void eliminarAula(Aula aula) {
-			this.aulaDAO.eliminarAula(aula);
-		
+		this.aulaDAO.eliminarAula(aula);
+
 	}
-	
-	public Collection<Aula> listarAulas(){
+
+	public Collection<Aula> listarAulas() {
 		List<Aula> listaAulas = this.aulaDAO.getAulas();
 		return listaAulas;
-		
+
 	}
+
 	public IAulaDAO getAulaDAO() {
 		return aulaDAO;
 	}
+
 	public void setAulaDAO(IAulaDAO aulaDAO) {
 		this.aulaDAO = aulaDAO;
 	}
-	
 
 }

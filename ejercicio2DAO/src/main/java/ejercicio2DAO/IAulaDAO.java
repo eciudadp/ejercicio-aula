@@ -7,7 +7,10 @@ import ejercicio01oo.model.Alumno;
 import ejercicio01oo.model.Aula;
 
 public interface IAulaDAO {
+	
 	void crearAula(Aula aula);
+	
+	void crearAula(Aula aula, Integer numPuestos);
 	
 	void actualizarAula(Aula aula);
 	

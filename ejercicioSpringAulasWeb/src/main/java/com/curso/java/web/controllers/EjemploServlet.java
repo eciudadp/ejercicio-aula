@@ -78,18 +78,18 @@ public class EjemploServlet extends HttpServlet {
 //		puestoAlumno1.setPersona(alumno1);
 //		puestoAlumno2.setPersona(alumno2);
 		 //aula1.getPuestoDelAlumno()).setPersona(alumno1);
-		for(int i =0;i< 12;i++) {
-			aula1.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
-			aula2.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
-			//System.out.println(aula1 +" añadido puesto de alumno");
-		}
+//		for(int i =0;i< 12;i++) {
+//			aula1.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
+//			aula2.getPuestoDelAlumno().add(context.getBean(PuestoDeTrabajo.class));
+//			//System.out.println(aula1 +" añadido puesto de alumno");
+//		}
 //		aula1.getPuestoDelAlumno().add(puestoAlumno2);
 //		aula1.getPuestoDelAlumno().add(puestoAlumno1);
 		
 		
 		AulasLN negocio = context.getBean(AulasLN.class); 
-		negocio.crearAula(aula1);
-		negocio.crearAula(aula2);
+		negocio.crearAula(aula1,12);
+		negocio.crearAula(aula2,10);
 		//System.out.println(negocio.crearAula(aula1));
 		//System.out.println(negocio.crearAula(aula2));
 		Collection<Profesor> listaProferoresXAula = negocio.ListaProferoresXAula("Kepler");
